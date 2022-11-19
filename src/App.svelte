@@ -141,7 +141,7 @@
 			game.message = `You got it! It was ${game.place.name.replace(' BUA', '')}.`;
 			if (game.streak >= 5) {
 				game.message += ` That\'s ${game.streak} in a row!`;
-				if (game.streak > game.turn) {
+				if (game.streak > game.turn + 1) {
 					game.message += ` <br/><small>(including previous game)</small>`;
 				}
 			}
