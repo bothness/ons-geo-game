@@ -166,7 +166,7 @@
 	// Function to set or load game history
 	function setHistory() {
 		// Check for cookie with previous score history
-		if (getState('history') == null) {
+		if (!getState('history')) {
 			// If no game history cookie, create cookie
 			let hist = {};
 			let keys = Object.keys(geographies);
@@ -187,16 +187,14 @@
 			// Check if history for all game types (in case of future additions)
 			let keys = Object.keys(history);
 			let geos = Object.keys(geographies);
-			if (keys.length < geos.length) {
-				for (let i in geos) {
-					if (!keys.includes(geos[i])) {
-						history[geos[i]] = {
-							turns: 0,
-							score: 0,
-							streak: 0,
-							maxstreak: 0
-						};
-					}
+			for (let i in geos) {
+				if (!keys.includes(geos[i])) {
+					history[geos[i]] = {
+						turns: 0,
+						score: 0,
+						streak: 0,
+						maxstreak: 0
+					};
 				}
 				setState('history', history);
 			}
