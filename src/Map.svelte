@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onDestroy } from 'svelte';
 	import maplibre from 'maplibre-gl';
 	
 	export let location = {
@@ -26,30 +26,25 @@
 		}
 	};
 
-	onMount(() => {
-		const link = document.createElement('link');
-		link.rel = 'stylesheet';
-		link.href = 'https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css';
+	function init() {
+		map = new maplibre.Map({
+			container,
+			style: style,
+			interactive: false,
+			maxZoom: 13.9,
+			...options
+		});
+		map.scrollZoom.disable();
+	}
 
-		link.onload = () => {
-			map = new maplibre.Map({
-				container,
-				style: style,
-				interactive: false,
-				maxZoom: 13.9,
-				...options
-			});
-			map.scrollZoom.disable();
-		};
-
-		document.head.appendChild(link);
-
-		return () => {
-			map.remove();
-			link.parentNode.removeChild(link);
-		};
+	onDestroy(() => {
+		if (map) map.remove();
 	});
 </script>
+
+<svelte:head>
+	<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" on:load={init} />
+</svelte:head>
 
 <style>
 	div {

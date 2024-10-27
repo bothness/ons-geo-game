@@ -21,12 +21,12 @@
 		war: {
 			name: 'Electoral Wards (rather hard)',
 			text: 'ward',
-			codes: ['E05', 'W05', 'N08', 'S12']
+			codes: ['E05', 'W05', 'N08', 'S13']
 		},
 		cit: {
 			name: 'Built-up Areas (impossible)',
 			text: 'build up area',
-			codes: ['E34', 'W37', 'K05']
+			codes: ['E63', 'W45', 'S45']
 		}
 	};
 	

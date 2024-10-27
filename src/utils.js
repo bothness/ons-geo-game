@@ -2,6 +2,35 @@ import { csvParse } from 'd3-dsv';
 import { bbox } from '@turf/turf';
 import { parse } from './wellknown.js';
 
+// const placesurl = 'https://raw.githubusercontent.com/ONSvisual/BaCAP/refs/heads/production/static/data/places-list.csv';
+// const cdnbase = "https://ons-dp-prod-cdn.s3.eu-west-2.amazonaws.com/maptiles/ap-geos/v3";
+
+// // Function to get place names and codes
+// export async function getPlaces(codes) {
+//   const res = await fetch(placesurl);
+//   const data = csvParse(await res.text());
+//   const lookup = {};
+//   for (const d of data) lookup[d.areacd] = d;
+//   return data
+//     .filter(d => codes.includes(d.areacd.slice(0, 3)))
+//     .map(d => {
+//       const row = {code: d.areacd, name: d.areanm};
+//       if (d.parentcd) row.pname = lookup[d.parentcd].areanm;
+//       return row;
+//     });
+// }
+
+// // Function to get boundary polygon based on place code
+// export async function getBoundary(code) {
+//   const res = await fetch(`${cdnbase}/${code.slice(0, 3)}/${code}.json`);
+//   const data = await res.json();
+	
+//   return {
+// 		geometry: data.geometry,
+// 		bounds: data.properties.bounds
+// 	};
+// }
+
 const apiurl = 'https://pmd3-production-drafter-onsgeo.publishmydata.com/v1/sparql/live?query=';
 
 // Function to get place names and codes
